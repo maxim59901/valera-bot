@@ -1,60 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-ThemeData buildValeraTheme() {
-  const bg = Color(0xFF0B0C0F);
-  const surface = Color(0xFF15171C);
-  const surface2 = Color(0xFF1C1F26);
-  const border = Color(0xFF2A2E37);
-  const accent = Color(0xFFE8E6E3);
-  const muted = Color(0xFF9AA0A6);
+/// Visual system aligned with Grok/X dark transcript UI.
+class ValeraColors {
+  static const canvas = Color(0xFF000000);
+  static const surface1 = Color(0xFF16181C);
+  static const surface2 = Color(0xFF1E2126);
+  static const surface3 = Color(0xFF272A2E);
+  static const divider = Color(0xFF2F3336);
+  static const text = Color(0xFFE7E9EA);
+  static const muted = Color(0xFF71767B);
+  static const link = Color(0xFF1D9BF0);
+}
 
+ThemeData buildValeraTheme() {
   final base = ThemeData(
     brightness: Brightness.dark,
     useMaterial3: true,
-    scaffoldBackgroundColor: bg,
+    scaffoldBackgroundColor: ValeraColors.canvas,
     colorScheme: const ColorScheme.dark(
-      surface: surface,
-      primary: accent,
-      onPrimary: Color(0xFF0B0C0F),
-      secondary: Color(0xFF8AB4F8),
-      onSurface: accent,
+      surface: ValeraColors.surface1,
+      primary: ValeraColors.text,
+      onPrimary: ValeraColors.canvas,
+      secondary: ValeraColors.link,
+      onSurface: ValeraColors.text,
+      outline: ValeraColors.divider,
     ),
-    dividerColor: border,
+    dividerColor: ValeraColors.divider,
+  );
+
+  final textTheme = GoogleFonts.interTextTheme(base.textTheme).apply(
+    bodyColor: ValeraColors.text,
+    displayColor: ValeraColors.text,
   );
 
   return base.copyWith(
-    textTheme: GoogleFonts.ibmPlexSansTextTheme(base.textTheme).apply(
-      bodyColor: accent,
-      displayColor: accent,
-    ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: bg,
+    textTheme: textTheme,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ValeraColors.canvas,
+      foregroundColor: ValeraColors.text,
       elevation: 0,
-      centerTitle: false,
-    ),
-    drawerTheme: const DrawerThemeData(backgroundColor: surface),
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: surface2,
-      hintStyle: const TextStyle(color: muted),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-        borderSide: const BorderSide(color: border),
+      scrolledUnderElevation: 0,
+      centerTitle: true,
+      titleTextStyle: textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w600,
+        color: ValeraColors.text,
       ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-        borderSide: const BorderSide(color: border),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-        borderSide: const BorderSide(color: muted),
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     ),
-    listTileTheme: const ListTileThemeData(
-      iconColor: muted,
-      textColor: accent,
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: ValeraColors.canvas,
+      surfaceTintColor: Colors.transparent,
     ),
+    iconTheme: const IconThemeData(color: ValeraColors.text, size: 22),
+    splashFactory: InkSparkle.splashFactory,
   );
 }

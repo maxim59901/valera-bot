@@ -1,0 +1,26 @@
+**/__pycache__/
+**/.venv/
+**/venv/
+server/data/
+**/.env
+**/.env.*
+!**/.env.example
+**/.dart_tool/
+**/build/
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+*.iml
+.idea/
+.vscode/
+apps/mobile/windows/flutter/ephemeral/
+apps/mobile/android/.gradle/
+apps/mobile/android/local.properties
+apps/mobile/android/app/debug/
+apps/mobile/android/app/profile/
+apps/mobile/android/app/release/
+*.aab
+*.exe
+# Keep release APK for download; ignore other build artifacts
+*.apk
+!releases/*.apk

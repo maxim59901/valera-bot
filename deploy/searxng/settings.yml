@@ -1,0 +1,12 @@
+# Minimal SearXNG settings for Valera Bot (JSON API enabled).
+use_default_settings: true
+
+server:
+  secret_key: "change-me-searxng-secret"
+  limiter: false
+  image_proxy: false
+
+search:
+  formats:
+    - html
+    - json

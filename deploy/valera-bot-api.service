@@ -1,0 +1,15 @@
+[Unit]
+Description=Valera Bot API gateway
+After=network.target
+
+[Service]
+Type=simple
+User=valera
+WorkingDirectory=/opt/valera-bot/server
+EnvironmentFile=/opt/valera-bot/server/.env
+ExecStart=/opt/valera-bot/server/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

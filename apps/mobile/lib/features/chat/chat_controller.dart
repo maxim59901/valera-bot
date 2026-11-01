@@ -121,6 +121,10 @@ class ChatController extends ChangeNotifier {
         final state = data['state'] as String? ?? '';
         if (state == 'searching') {
           statusText = 'Searching: ${data['query'] ?? ''}';
+        } else if (state == 'drawing') {
+          statusText = 'Drawing…';
+        } else if (state == 'drawing_failed') {
+          statusText = 'Image failed';
         } else if (state == 'thinking') {
           statusText = 'Thinking…';
         } else {
@@ -129,6 +133,15 @@ class ChatController extends ChangeNotifier {
         break;
       case 'search':
         statusText = 'Got web results';
+        break;
+      case 'image':
+        if (messages.isNotEmpty && messages.last.role == 'assistant') {
+          final url = data['url'] as String?;
+          if (url != null) {
+            messages.last.images = [...(messages.last.images ?? <String>[]), url];
+          }
+        }
+        statusText = 'Image ready';
         break;
       case 'chat_updated':
         final id = data['id'] as String?;
@@ -143,6 +156,10 @@ class ChatController extends ChangeNotifier {
           messages.last.streaming = false;
           messages.last.content = data['content'] as String? ?? messages.last.content;
           messages.last.meta = data['meta'] as Map<String, dynamic>?;
+          final imgs = (data['images'] as List?)?.map((e) => e.toString()).toList();
+          if (imgs != null && imgs.isNotEmpty) {
+            messages.last.images = imgs;
+          }
         }
         statusText = '';
         break;

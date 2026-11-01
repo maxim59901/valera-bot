@@ -16,14 +16,14 @@ class Settings(BaseSettings):
     database_path: str = "./data/valera.db"
     media_dir: str = "./data/media"
     enable_search: bool = True
+    enable_image_gen: bool = True
     host: str = "0.0.0.0"
     port: int = 8000
     cors_origins: str = "*"
     system_prompt: str = (
         "You are Valera Bot — a helpful, maximally truthful, and witty personal AI. "
         "Be direct, curious, and occasionally sarcastic — never cruel. Prefer clear answers "
-        "over fluff. Speak naturally in the user's language. When useful, use the web_search "
-        "tool for fresh facts."
+        "over fluff. Speak naturally in the user's language."
     )
 
     @property

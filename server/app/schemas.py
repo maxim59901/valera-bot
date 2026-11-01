@@ -62,4 +62,5 @@ class SettingsOut(BaseModel):
     default_model: str
     vision_model: str
     enable_search: bool
+    enable_image_gen: bool = True
     system_prompt: str

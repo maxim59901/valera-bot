@@ -18,5 +18,6 @@ async def get_public_settings(settings: Settings = Depends(get_settings)) -> Set
         default_model=settings.default_model,
         vision_model=settings.vision_model,
         enable_search=settings.enable_search,
+        enable_image_gen=settings.enable_image_gen,
         system_prompt=settings.system_prompt,
     )
